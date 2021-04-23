@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react';
-
+import { Link } from 'react-router-dom'
 import reducer from '../reducers/products_reducer'
-import { products_url } from '../utilities/LinksNservices';
+import { products_url as url} from '../utilities/LinksNservices';
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -14,7 +14,14 @@ import {
 } from '../actions'
 
 const initialState = {
-  isSidebarOpen :true,
+  isSidebarOpen :false,
+  products_loading:false,
+  products_error:false,
+  products : [],
+  featured_products:[],
+  single_product_loading: false,
+  single_product_error: false,
+  single_product: {},
 }
 
 const ProductsContext = React.createContext()
@@ -27,30 +34,45 @@ export const ProductsProvider = ({ children }) => {
   const closeSidebar=()=>{
     dispatch({ type:SIDEBAR_CLOSE})
   }
-  // useEffect(() => {
-  //   // fetchProducts(url)
-  //   openSidebar();
-  // }, [])
-return (
+
+ const fetchProducts = async (url) => {
+    dispatch({type : GET_PRODUCTS_BEGIN})
+    try {
+      const response = await fetch(url)
+      const products = await response.json()
+      //  console.log(products);
+      dispatch({type : GET_PRODUCTS_SUCCESS,payload:products})
+    } catch (error) {
+      dispatch({type:GET_PRODUCTS_ERROR})
+    }
+  }
+  const fetchSingleProduct = async (url) => {
+    dispatch({type : GET_SINGLE_PRODUCT_BEGIN})
+    try {
+      const response = await fetch(url)
+      const singleProduct = await response.json()
+      console.log(singleProduct);
+      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts(url)
+    
+  }, [])
+
+  return (
+    
     <ProductsContext.Provider
-      value={{...state,openSidebar,closeSidebar}}>
+      value={{...state,openSidebar,closeSidebar,fetchSingleProduct,}}>
       {children}
     </ProductsContext.Provider>
+    
   )
 }
 export const useProductsContext = () => {
   return useContext(ProductsContext)
 }
-//   const fetchProducts = async () =>{
-    
-//     try {
-//       const response = await fetch(products_url);
-//       const products= await response.json();
-//       console.log(products);
-      
-      
-//     } catch (error) {
-     
-//       console.log(error);
-//     }
-// }
