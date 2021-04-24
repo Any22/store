@@ -1,6 +1,19 @@
 # Getting Started with Create React App
 
 This project was designed and developed using react-router-dom 
+## Details
+### Files and folders 
+### App.js is just rendering the components
+
+- Products_reducer.js
+Reducer has state and actions: states are condition before ab update and actions are all action that I want to perform after performing my actions the state will be returned  
+- The links are common in side bar also so we are importing it. 
+
+
+- Actions.js 
+The actions are already defined here to use it over and over again and multiple times in our app
+ProductsFetch.js 
+Is getting all my product from API
 
 ## Available Scripts
 
