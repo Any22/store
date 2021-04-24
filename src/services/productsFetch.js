@@ -1,7 +1,9 @@
+
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom'
 import reducer from '../reducers/products_reducer'
 import { products_url as url} from '../utilities/LinksNservices';
+import{single_product_url as res} from '../utilities/LinksNservices'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -40,18 +42,18 @@ export const ProductsProvider = ({ children }) => {
     try {
       const response = await fetch(url)
       const products = await response.json()
-      //  console.log(products);
+     console.log(products);
       dispatch({type : GET_PRODUCTS_SUCCESS,payload:products})
     } catch (error) {
       dispatch({type:GET_PRODUCTS_ERROR})
     }
   }
-  const fetchSingleProduct = async (url) => {
+  const fetchSingleProduct = async () => {
     dispatch({type : GET_SINGLE_PRODUCT_BEGIN})
     try {
-      const response = await fetch(url)
+      const response = await fetch(res)
       const singleProduct = await response.json()
-      console.log(singleProduct);
+      // console.log(singleProduct)
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
     } catch (error) {
       console.log(error);

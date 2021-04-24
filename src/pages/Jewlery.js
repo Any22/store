@@ -1,41 +1,35 @@
 import React, { useState, useEffect }from 'react';
-import {Link} from 'react-router-dom'
-import styled from 'styled-components'
-import Filters from '../components/Filters' 
-import { products_url as url} from '../utilities/LinksNservices';
-import SingleProductPage from './SingleProductPage';
-import ProductList from '../components/ProductList' 
 
+import styled from 'styled-components'
+import { products_url as url} from '../utilities/LinksNservices';
 import  PageHero from '../components/PageHero'
 
 
-const ProductsPage = () => {
-const [loading,setLoading]=useState(true);
-const [products,setProducts]=useState([]);
-// const [menproducts,setmenProducts] = useState([]);
-// const [womenproducts,setwomenProducts] = useState([]);
-// const[elproducts,setEProducts] = useState([]);
-// const [jewlproducts,setJProducts] = useState([]);
+const Jewelry = () => {
+const [jloading,setJLoading]=useState(true);
+const [products,setJProducts]=useState([]);
+// const [newProduct,setnewproduct]=useState([]);
 
-   const FetchProducts = async (url) => {
-    setLoading(false);
+   const FetchJProducts = async () => {
+    setJLoading(false);
     try {
-      const response = await fetch(url)
+      const response = await fetch('https://fakestoreapi.com/products/category/jewelery')
       const products = await response.json()
-      setLoading(false);
-      setProducts(products);
+      setJLoading(false);
+      setJProducts(products);
       console.log(products);
      
     } catch (error) {
-      setLoading(false)
+      setJLoading(false)
     }
   
     };
   useEffect(() => {
-    FetchProducts(url)
-  
+    FetchJProducts(url)
+    
   }, [])
-      {return <main>
+      
+    {return <main>
         <PageHero title='product' />
         <Wrapper className='section'>
          
@@ -58,9 +52,10 @@ const [products,setProducts]=useState([]);
       </Wrapper>
     </main>}
       
- 
-  
-  }
+    
+}
+      
+
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: auto auto;
@@ -98,4 +93,5 @@ img{
     }
 }
 `
-export default ProductsPage
+  
+export default Jewelry;

@@ -16,6 +16,26 @@ export const links = [
     text: 'products',
     url: '/products',
   },
+  {
+    id: 4,
+    text: 'jewelry',
+    url: '/jewelry',
+  },
+  {
+    id: 5,
+    text: 'electronics',
+    url: '/electronics',
+  },
+  {
+    id: 6,
+    text: 'menclothing',
+    url: '/menclothing',
+  },
+  {
+    id: 7,
+    text: 'womenclothing',
+    url: '/womenclothing',
+  },
 ]
 
 export const services = [

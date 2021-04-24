@@ -2,7 +2,7 @@ import React from 'react'
 import { useProductsContext } from '../services/productsFetch'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import Error from './Errors'
+import Error from './Error'
 import Loading from './Loading'
 import Product from './Product'
 const FeaturedProducts = () => {
@@ -27,7 +27,7 @@ const FeaturedProducts = () => {
       </div>
       <div className='section-center featured'>
         {featured.map((product) => {
-            console.log(featured);
+            
           return <Product key={product.id} {...product} />
         })}
       </div>

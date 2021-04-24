@@ -14,7 +14,7 @@ const CartBtn = () => {
         Cart 
         <span className='cart-container'>
           <FaShoppingCart />
-          <span className='cart-value'>8</span>
+          <span className='cart-value'></span>
         </span>
     </Link>
       <button type='button' className='auth-btn' >
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: -10px;
     right: -16px;
-    background: var(--clr-primary-5);
+    background: red;
     width: 16px;
     height: 16px;
     display: flex;
@@ -59,7 +59,7 @@ const Wrapper = styled.div`
     justify-content: center;
     border-radius: 50%;
     font-size: 0.75rem;
-    color: var(--clr-white);
+    color: white;
     padding: 12px;
   }
   .auth-btn {

@@ -4,7 +4,7 @@ import { useProductsContext } from '../services/productsFetch'
 import { single_product_url as url } from '../utilities/LinksNservices'
 // import { formatPrice } from '../utils/helpers'
 import Loading from '../components/Loading'
-import Error from '../components/Errors'
+import Error from '../components/Error'
 import PageHero from '../components/PageHero'
 import ProductImages from '../components/ProductImages'
 import Stars from '../components/Stars'
@@ -42,17 +42,11 @@ const SingleProductPage = () => {
   if (error) {
     return <Error />
   }
- const {
-     id:abc,
-    title,
-    price,
-    description,
-    category,
-    image,
-  } = product
-  return<Wrapper>single product 
-   <PageHero title={title} product />
-   <h3 className="product-category">{category}</h3>
+ const {id:abc,title,price,description,category,image} = product
+  let stock=19;
+  return<Wrapper>
+    <PageHero title={title} product />
+     <h3 className="product-category">{category}</h3>
    
       <div className='section section-center page'>
         <Link to='/products' className='btn'>
@@ -61,11 +55,11 @@ const SingleProductPage = () => {
         <div className='product-center'>
             <img src={image}/>
             <section className='content'>
-            <h2>{title}</h2>
-            <Stars />
-            <h5>${price}</h5>
+            <h3>{title}</h3>
             <p className='desc'>{description}</p>
-            <AddToCart/>
+            <br/>
+            <h4>${price}</h4>
+            {stock>0 && <AddToCart product={product}/> }
             </section>
         </div>
         </div>
@@ -82,11 +76,16 @@ const Wrapper = styled.main`
     display: grid;
     gap: 4rem;
     margin-top: 2rem;
+    img{
+        margin:25%;
+        height:280px;
+       width:240px; 
+    }
   }
   .product-category{
       position: relative ;
       top:30px;
-      margin:30px;
+      margin:10px;
       text-transform: uppercase;
   }
   .price {

@@ -11,10 +11,14 @@ import {
   Error,
   About,
   Products,
+ 
   PrivateRoute,
  
 } from './pages'
-
+import Jewelry from './pages/Jewlery'
+import Electronics from './pages/Electronics'
+import MenClothing from './pages/MenClothing'
+import WomenClothing from './pages/WomenClothing'
 
 import './App.css';
 // https://www.youtube.com/watch?v=S8yn3-WpVV8
@@ -30,6 +34,8 @@ function App() {
         <Route exact path="/cart"><Cart/></Route>
         <Route exact path="/products"><Products/></Route>
         <Route path='/products/:id' children={<SingleProduct />} />
+        <Route exact path="/jewelry"><Jewelry/></Route> 
+        <Route exact path="/electronics"><Electronics/></Route> 
         <Route path='/checkout'><Checkout /></Route> 
         <Route path='*'><Error /></Route>
       </Switch>
