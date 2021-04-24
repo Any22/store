@@ -19,7 +19,7 @@ import Jewelry from './pages/Jewlery'
 import Electronics from './pages/Electronics'
 import MenClothing from './pages/MenClothing'
 import WomenClothing from './pages/WomenClothing'
-
+import UserPage from './pages/UserPage'
 import './App.css';
 // https://www.youtube.com/watch?v=S8yn3-WpVV8
 function App() {
@@ -35,7 +35,10 @@ function App() {
         <Route exact path="/products"><Products/></Route>
         <Route path='/products/:id' children={<SingleProduct />} />
         <Route exact path="/jewelry"><Jewelry/></Route> 
-        <Route exact path="/electronics"><Electronics/></Route> 
+        <Route exact path="/electronics"><Electronics/></Route>
+        <Route exact path="/menclothing"><MenClothing/></Route>
+        <Route exact path="/womenclothing"><WomenClothing/></Route>  
+        <Route exact path="/userpage"><UserPage/></Route>
         <Route path='/checkout'><Checkout /></Route> 
         <Route path='*'><Error /></Route>
       </Switch>

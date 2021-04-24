@@ -36,6 +36,11 @@ export const links = [
     text: 'womenclothing',
     url: '/womenclothing',
   },
+  {
+    id: 8,
+    text: 'userpage',
+    url: '/userpage',
+  },
 ]
 
 export const services = [
